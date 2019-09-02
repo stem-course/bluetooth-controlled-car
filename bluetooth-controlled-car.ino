@@ -1,42 +1,42 @@
-/* 
-Code by: 
-M.Hashir
+/*
+  Code by:
+  M.Hashir
 
-This is a code for Bluetooth controlled car
+  This is a code for Bluetooth controlled car
 
-Hardware:
-Is bought from www.munphurid.com
--Arduino UNO
--Motor driver module L298N
--Munphurid Chassis MN CS01 (Light weight 3 wheeler chassis can also be used)
--HC-05 Bluetooth Module
--7V to 12V battery
--10 male to female wires
+  Hardware:
+  Is bought from www.munphurid.com
+  -Arduino UNO
+  -Motor driver module L298N
+  -Munphurid Chassis MN CS01 (Light weight 3 wheeler chassis can also be used)
+  -HC-05 Bluetooth Module
+  -7V to 12V battery
+  -10 male to female wires
 
-Connections:
-Motor driver module and Arduino
--Connect IN1 to pin 9 of Arduino
--Connect IN2 to pin 10 of Arduino
--Connect IN3 to pin 11 of Arduino
--Connect IN4 to pin 12 of Arduino
--Connect ENA to pin 6 of Arduino
--Connect ENB to pin 7 of Arduino
--Connect 5V of module to 5V of Arduino
--Connect GND of module to GND of Arduino
+  Connections:
+  Motor driver module and Arduino
+  -Connect IN1 to pin 9 of Arduino
+  -Connect IN2 to pin 10 of Arduino
+  -Connect IN3 to pin 11 of Arduino
+  -Connect IN4 to pin 12 of Arduino
+  -Connect ENA to pin 6 of Arduino
+  -Connect ENB to pin 7 of Arduino
+  -Connect 5V of module to 5V of Arduino
+  -Connect GND of module to GND of Arduino
 
 
-Bluetooth module and Arduino
--Connect RX of Bluetooth module to pin 1 = TX of Arduino
--Connect TX of Bluetooth module to pin 0 = RX of Arduino
--Connect VCC of Bluetooth module to 5V of Arduino
--Connect GND of Bluetooth module to GND of Arduino
+  Bluetooth module and Arduino
+  -Connect RX of Bluetooth module to pin 1 = TX of Arduino
+  -Connect TX of Bluetooth module to pin 0 = RX of Arduino
+  -Connect VCC of Bluetooth module to 5V of Arduino
+  -Connect GND of Bluetooth module to GND of Arduino
 
-Motors
-Connect motors to motor driver module
+  Motors
+  Connect motors to motor driver module
 
-Battery and all circuits
--Connect +ve wire of battery to 12V of motor driver module
--Connect -ve wire of battery to GND of motor driver module
+  Battery and all circuits
+  -Connect +ve wire of battery to 12V of motor driver module
+  -Connect -ve wire of battery to GND of motor driver module
 */
 
 #define IN1 9
@@ -59,45 +59,45 @@ void setup(void)
 {
 
   Serial.begin (9600);              //Do not edit this line
-  pinMode(IN1,OUTPUT);              //Do not edit this line
-  pinMode(IN2,OUTPUT);              //Do not edit this line
-  pinMode(IN3,OUTPUT);              //Do not edit this line
-  pinMode(IN4,OUTPUT);              //Do not edit this line
-  pinMode(ENA,OUTPUT);              //Do not edit this line
-  pinMode(ENB,OUTPUT);              //Do not edit this line
-  digitalWrite(ENA,HIGH);          //Used for speed controlling
-  digitalWrite(ENB,HIGH);          //Used for speed controlling
+  pinMode(IN1, OUTPUT);             //Do not edit this line
+  pinMode(IN2, OUTPUT);             //Do not edit this line
+  pinMode(IN3, OUTPUT);             //Do not edit this line
+  pinMode(IN4, OUTPUT);             //Do not edit this line
+  pinMode(ENA, OUTPUT);             //Do not edit this line
+  pinMode(ENB, OUTPUT);             //Do not edit this line
+  digitalWrite(ENA, HIGH);         //Used for speed controlling
+  digitalWrite(ENB, HIGH);         //Used for speed controlling
 
-    while(!Serial.available());
- }
+  while (!Serial.available());
+}
 
 
 void loop(void) {
 
-  int a=Serial.read();          //Receive data from Bluetooth module
-switch(a){
+  int a = Serial.read();        //Receive data from Bluetooth module
+  switch (a) {
 
-case 'F':            //If this letter is received
-forward();           //Move forward
-delay(200);
-break;
+    case 'F':            //If this letter is received
+      forward();           //Move forward
+      delay(200);
+      break;
 
-case 'L':            //If this letter is received
-left();             //Turn left
-delay(200);
-break;
+    case 'L':            //If this letter is received
+      left();             //Turn left
+      delay(200);
+      break;
 
-case 'R':          //If this letter is received
-right();           //Turn right
-delay(200);
-break;
+    case 'R':          //If this letter is received
+      right();           //Turn right
+      delay(200);
+      break;
 
-default:
-stopm();          //If nothing is pressed then stop
-delay(200);
-}
+    default:
+      stopm();          //If nothing is pressed then stop
+      delay(200);
+  }
 
-a=0;
+  a = 0;
 }
 
 
@@ -128,7 +128,7 @@ void right(void)            //The four lines below tell your car how to turn rig
   digitalWrite(IN2, HIGH);
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
-  
+
 }
 
 

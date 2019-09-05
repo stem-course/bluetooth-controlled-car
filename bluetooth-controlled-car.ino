@@ -1,5 +1,5 @@
 /*
-  Code by:
+  Code by: www.munphurid.com
   M.Hashir
 
   This is a code for Bluetooth controlled car
@@ -39,13 +39,13 @@
   -Connect -ve wire of battery to GND of motor driver module
 */
 
-#define IN1 9
-#define IN2 10
-#define ENA 6
-#define ENB 7
-#define IN3 11
-#define IN4 12
-
+#define IN1 9                          //Connect IN1 to pin 2 of Arduino
+#define IN2 10                         //Connect IN4 to pin 3 of Arduino
+#define ENA 6                          //Connect ENA to pin 6 of Arduino
+#define ENB 7                          //Connect ENB to pin 7 of Arduino
+#define IN3 11                         //Connect IN3 to pin 4 of Arduino
+#define IN4 12                         //Connect IN4 to pin 5 of Arduino
+int speedvariable = 255;               //range of speedvariable is 0 to 255.... you can change this value to change speed
 
 void stopm(void);
 void forward(void);
@@ -57,7 +57,6 @@ void sharpright(void);
 
 void setup(void)
 {
-
   Serial.begin (9600);              //Do not edit this line
   pinMode(IN1, OUTPUT);             //Do not edit this line
   pinMode(IN2, OUTPUT);             //Do not edit this line
@@ -65,8 +64,8 @@ void setup(void)
   pinMode(IN4, OUTPUT);             //Do not edit this line
   pinMode(ENA, OUTPUT);             //Do not edit this line
   pinMode(ENB, OUTPUT);             //Do not edit this line
-  digitalWrite(ENA, HIGH);         //Used for speed controlling
-  digitalWrite(ENB, HIGH);         //Used for speed controlling
+  analogWrite(ENA, speedvariable);          //Used for speed controlling
+  analogWrite(ENB, speedvariable);          //Used for speed controlling
 
   while (!Serial.available());
 }
@@ -74,26 +73,31 @@ void setup(void)
 
 void loop(void) {
 
-  int a = Serial.read();        //Receive data from Bluetooth module
+  int a = Serial.read();            //Receive data from Bluetooth module
   switch (a) {
 
-    case 'F':            //If this letter is received
-      forward();           //Move forward
+    case 'F':                           //If this letter is received
+      forward();                          //Move forward
       delay(200);
       break;
 
-    case 'L':            //If this letter is received
-      left();             //Turn left
+    case 'L':                           //If this letter is received
+      left();                             //Turn left
       delay(200);
       break;
 
-    case 'R':          //If this letter is received
-      right();           //Turn right
+    case 'R':                           //If this letter is received
+      right();                            //Turn right
+      delay(200);
+      break;
+
+    case 'B':                           //If this letter is received
+      backward();                         //Move forward
       delay(200);
       break;
 
     default:
-      stopm();          //If nothing is pressed then stop
+      stopm();                            //If nothing is pressed then stop
       delay(200);
   }
 
@@ -102,7 +106,7 @@ void loop(void) {
 
 
 
-void forward(void)            //The four lines below tell your car how to move forward... you can edit them
+void forward(void)                  //The four lines below tell your car how to move forward... you can edit them
 {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -112,7 +116,7 @@ void forward(void)            //The four lines below tell your car how to move f
 }
 
 
-void left(void)              //The four lines below tell your car how to turn left.... you can edit them
+void left(void)                     //The four lines below tell your car how to turn left.... you can edit them
 {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -122,7 +126,7 @@ void left(void)              //The four lines below tell your car how to turn le
 
 
 
-void right(void)            //The four lines below tell your car how to turn right.... you can edit them
+void right(void)                    //The four lines below tell your car how to turn right.... you can edit them
 {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
@@ -132,12 +136,21 @@ void right(void)            //The four lines below tell your car how to turn rig
 }
 
 
-void stopm(void)            //The four lines below tell your car how to stop.... you can edit them
+void stopm(void)                    //The four lines below tell your car how to stop.... you can edit them
 {
 
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
+
+}
+void backward(void)            //The four lines below tell your car how to go backward.... you can edit them
+{
+
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
 
 }

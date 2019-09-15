@@ -1,5 +1,5 @@
 /*
-  Code by: www.munphurid.com
+  Code by:
   M.Hashir
 
   This is a code for Bluetooth controlled car
@@ -15,12 +15,12 @@
 
   Connections:
   Motor driver module and Arduino
-  -Connect IN1 to pin 9 of Arduino
-  -Connect IN2 to pin 10 of Arduino
-  -Connect IN3 to pin 11 of Arduino
-  -Connect IN4 to pin 12 of Arduino
-  -Connect ENA to pin 6 of Arduino
-  -Connect ENB to pin 7 of Arduino
+  -Connect IN1 of module to pin 9 of Arduino
+  -Connect IN2 of module to pin 10 of Arduino
+  -Connect IN3 of module to pin 11 of Arduino
+  -Connect IN4 of module to pin 12 of Arduino
+  -Connect ENA of module to pin 6 of Arduino
+  -Connect ENB of module to pin 7 of Arduino
   -Connect 5V of module to 5V of Arduino
   -Connect GND of module to GND of Arduino
 
@@ -32,20 +32,20 @@
   -Connect GND of Bluetooth module to GND of Arduino
 
   Motors
-  Connect motors to motor driver module
+  Connect motors to motor driver module.
 
   Battery and all circuits
   -Connect +ve wire of battery to 12V of motor driver module
   -Connect -ve wire of battery to GND of motor driver module
 */
 
-#define IN1 9                          //Connect IN1 to pin 2 of Arduino
-#define IN2 10                         //Connect IN4 to pin 3 of Arduino
+#define IN1 9                          //Connect IN1 to pin 9 of Arduino
+#define IN2 10                         //Connect IN4 to pin 10 of Arduino
 #define ENA 6                          //Connect ENA to pin 6 of Arduino
 #define ENB 7                          //Connect ENB to pin 7 of Arduino
-#define IN3 11                         //Connect IN3 to pin 4 of Arduino
-#define IN4 12                         //Connect IN4 to pin 5 of Arduino
-int speedvariable = 255;               //range of speedvariable is 0 to 255.... you can change this value to change speed
+#define IN3 11                         //Connect IN3 to pin 11 of Arduino
+#define IN4 12                         //Connect IN4 to pin 12 of Arduino
+int speedvariable = 255;               //range of speedvariable is 0 to 255.... you can change this value to change speed of car
 
 void stopm(void);
 void forward(void);
@@ -57,7 +57,7 @@ void sharpright(void);
 
 void setup(void)
 {
-  Serial.begin (9600);              //Do not edit this line
+  Serial.begin(9600);              //Do not edit this line
   pinMode(IN1, OUTPUT);             //Do not edit this line
   pinMode(IN2, OUTPUT);             //Do not edit this line
   pinMode(IN3, OUTPUT);             //Do not edit this line

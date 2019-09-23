@@ -8,22 +8,22 @@
   Is bought from www.munphurid.com
   -Arduino UNO
   -Motor driver module L298N
-  -Munphurid Chassis MN CS01 (Light weight 3 wheeler chassis can also be used)
+  -Light weight 3 wheeler chassis
   -HC-05 Bluetooth Module
-  -7V to 12V battery
+  -Li-ion cell with holder (any 7V to 12V battery will work)
   -10 male to female wires
+  -5 male to male wires
 
   Connections:
   Motor driver module and Arduino
-  -Connect IN1 of module to pin 9 of Arduino
-  -Connect IN2 of module to pin 10 of Arduino
-  -Connect IN3 of module to pin 11 of Arduino
-  -Connect IN4 of module to pin 12 of Arduino
-  -Connect ENA of module to pin 6 of Arduino
-  -Connect ENB of module to pin 7 of Arduino
+  -Connect IN1 of module to pin 6 of Arduino
+  -Connect IN2 of module to pin 7 of Arduino
+  -Connect IN3 of module to pin 8 of Arduino
+  -Connect IN4 of module to pin 9 of Arduino
+  -Connect ENA of module to pin 10 of Arduino
+  -Connect ENB of module to pin 11 of Arduino
   -Connect 5V of module to 5V of Arduino
   -Connect GND of module to GND of Arduino
-
 
   Bluetooth module and Arduino
   -Connect RX of Bluetooth module to pin 1 = TX of Arduino
@@ -39,20 +39,19 @@
   -Connect -ve wire of battery to GND of motor driver module
 */
 
-#define IN1 9                          //Connect IN1 to pin 9 of Arduino
-#define IN2 10                         //Connect IN4 to pin 10 of Arduino
-#define ENA 6                          //Connect ENA to pin 6 of Arduino
-#define ENB 7                          //Connect ENB to pin 7 of Arduino
-#define IN3 11                         //Connect IN3 to pin 11 of Arduino
-#define IN4 12                         //Connect IN4 to pin 12 of Arduino
+#define IN1 6                          //Connect IN1 to pin 6 of Arduino
+#define IN2 7                         //Connect IN2 to pin 7 of Arduino
+#define ENA 10                          //Connect ENA to pin 10 of Arduino
+#define ENB 11                          //Connect ENB to pin 11 of Arduino
+#define IN3 8                         //Connect IN3 to pin 8 of Arduino
+#define IN4 9                         //Connect IN4 to pin 9 of Arduino
 int speedvariable = 255;               //range of speedvariable is 0 to 255.... you can change this value to change speed of car
 
 void stopm(void);
 void forward(void);
 void right(void);
 void left(void);
-void inputs(int);
-void sharpright(void);
+void backward(void);
 
 
 void setup(void)
@@ -99,8 +98,8 @@ void loop(void) {
     default:
       stopm();                            //If nothing is pressed then stop
       delay(200);
-  }
 
+  }
   a = 0;
 }
 
